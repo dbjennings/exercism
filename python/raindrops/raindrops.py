@@ -1,7 +1,10 @@
 def convert(number):
     
-    pling = int(not number%3==0) * "Pling"
+    pling = int(number%3==0) * 'Pling'
+    plang = int(number%5==0) * 'Plang'
+    plong = int(number%7==0) * 'Plong'
 
-    return f'{pling}'
-
-print(convert(3))
+    if pling or plang or plong:
+        return f'{pling}{plang}{plong}'
+    else:
+        return str(number)
