@@ -28,15 +28,17 @@ class SgfTree:
 
 
 def parse(input_string: str):
-    nodes = parse_nodes(i_s)
-
+    # Compile nodes list
+    nodes = parse_nodes(input_string)
+    # Check for valid input
     if not nodes:
         if input_string=='(;)': return SgfTree()
         else: raise ValueError("Invalid input")
+    # Parent node is always first
     parent = nodes.pop(0)
-
+    # Pattern recognition for keys and corresponding values
     main_pattern = re.compile(r'(?P<key>[A-Z]+)(?P<values>(\[\w+\])+)+')
-    
+    # 
     p_match = [m.group('key') for m in main_pattern.finditer(parent)]
     v_match = [m.group('values') for m in main_pattern.finditer(parent)]
 
